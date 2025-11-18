@@ -54,6 +54,8 @@ void detailPeserta();
 void hapusPeserta();
 void kickPeserta();
 void garis();
+void bendera();
+void rumah();
 
 
 int main() {
@@ -132,7 +134,9 @@ void menuPanitia(User *user) {
         printf("6. Lihat Detail Peserta\n");
         printf("7. Hapus Peserta\n");
         printf("8. Kick Peserta dari Event\n");
-        printf("9. Kembali\n");
+        printf("9. Buat Bendera\n");
+        printf("10. Buat Rumah Pola\n");
+        printf("11. Kembali\n");
         printf("Pilih: ");
         if (scanf("%d", &pilihan) != 1) {
             printf("Input salah!\n");
@@ -150,7 +154,9 @@ void menuPanitia(User *user) {
             case 6: detailPeserta(); break;
             case 7: hapusPeserta(); break;
             case 8: kickPeserta(); break;
-            case 9: return;
+            case 9: bendera(); break;
+            case 10: rumah(); break;
+            case 11: return;
             default: printf("Pilihan tidak valid.\n");
         }
     } while (1);
@@ -166,7 +172,9 @@ void menuPeserta(User *user) {
         printf("2. Ikut Event\n");
         printf("3. Keluar dari Event\n");
         printf("4. Lihat Event yang Diikuti\n");
-        printf("5. Kembali\n");
+        printf("5. Buat Bendera\n");
+        printf("6. Buat Rumah Pola\n");
+        printf("7. Kembali\n");
         printf("Pilih: ");
         if (scanf("%d", &pilihan) != 1) {
             printf("Input salah!\n");
@@ -180,7 +188,9 @@ void menuPeserta(User *user) {
             case 2: daftarKeEvent(user); break;
             case 3: keluarDariEvent(user); break;
             case 4: lihatEventDiikuti(user); break;
-            case 5: return;
+            case 5: bendera(user); break;
+            case 6: rumah(user); break;
+            case 7: return;
             default: printf("Pilihan tidak valid.\n");
         }
     } while (1);
@@ -462,4 +472,84 @@ void simpanData() {
 
 void garis() {
     printf("---------------------------------------------\n");
+}
+
+void bendera(){
+	 int t;
+    int i, j;
+
+    // Aktifkan mode warna untuk Windows (opsional, tapi aman)
+    system("");
+
+    printf("=======================================\n");
+    printf("=           BENDERA INDONESIA         =\n");
+    printf("=======================================\n");
+
+    printf("Masukkan tinggi bendera : ");
+    if (scanf("%d", &t) != 1 || t <= 0) {
+        printf("Input tidak valid!\n");
+        return 0;
+    }
+
+    // BAGIAN MERAH
+    for (i = 0; i < t; i++) {
+        printf("\033[41m");  // background merah
+        for (j = 0; j < 30; j++) {
+            printf(" ");
+        }
+        printf("\033[0m\n"); // reset warna
+    }
+
+    // BAGIAN PUTIH
+    for (i = 0; i < t; i++) {
+        printf("\033[47m");  // background putih
+        for (j = 0; j < 30; j++) {
+            printf(" ");
+        }
+        printf("\033[0m\n"); // reset warna
+    }
+
+    printf("\nBENDERA INDONESIA JADI!\n");
+
+    return 0;
+}
+
+void rumah() {
+	int t;
+
+    printf("=======================================\n");
+    printf("=              POLA RUMAH             =\n");
+    printf("=======================================\n");
+
+    printf("Masukkan tinggi atap : ");
+    scanf("%d", &t);
+
+    // Bagian atap (segitiga)
+    for (int i = 1; i <= t; i++) {
+        for (int j = i; j < t; j++)
+            printf(" ");
+        for (int j = 1; j <= (2*i - 1); j++)
+            printf("*");
+        printf("\n");
+    }
+
+    // Bagian badan rumah (persegi)
+    int tinggi_badan = t;
+    int lebar = 2 * t - 1;
+
+    for (int i = 0; i < tinggi_badan; i++) {
+        for (int j = 0; j < lebar; j++) {
+            // bikin pintu di tengah
+            if (i >= tinggi_badan - t/2 && 
+                j >= lebar/2 - 1 && 
+                j <= lebar/2 + 1)
+                printf("|");
+            else
+                printf("#");
+        }
+        printf("\n");
+    }
+
+    return 0;
+
 }
