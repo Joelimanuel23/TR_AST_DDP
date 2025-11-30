@@ -134,7 +134,7 @@ void menuPanitia(User *user) {
         printf("6. Lihat Detail Peserta\n");
         printf("7. Hapus Peserta\n");
         printf("8. Kick Peserta dari Event\n");
-        printf("9. Buat Bendera\n");
+        printf("9. Buat Bendera Indonesia\n");
         printf("10. Buat Rumah Pola\n");
         printf("11. Kembali\n");
         printf("Pilih: ");
@@ -172,7 +172,7 @@ void menuPeserta(User *user) {
         printf("2. Ikut Event\n");
         printf("3. Keluar dari Event\n");
         printf("4. Lihat Event yang Diikuti\n");
-        printf("5. Buat Bendera\n");
+        printf("5. Buat Bendera Indonesia\n");
         printf("6. Buat Rumah Pola\n");
         printf("7. Kembali\n");
         printf("Pilih: ");
@@ -188,8 +188,8 @@ void menuPeserta(User *user) {
             case 2: daftarKeEvent(user); break;
             case 3: keluarDariEvent(user); break;
             case 4: lihatEventDiikuti(user); break;
-            case 5: bendera(user); break;
-            case 6: rumah(user); break;
+            case 5: bendera(); break;
+            case 6: rumah(); break;
             case 7: return;
             default: printf("Pilihan tidak valid.\n");
         }
@@ -478,20 +478,20 @@ void bendera(){
 	 int t;
     int i, j;
 
-    // Aktifkan mode warna untuk Windows (opsional, tapi aman)
     system("");
 
     printf("=======================================\n");
     printf("=           BENDERA INDONESIA         =\n");
     printf("=======================================\n");
 
+    printf("Selamat datang di program pembuatan Bendera Indonesia!\n");
     printf("Masukkan tinggi bendera : ");
     if (scanf("%d", &t) != 1 || t <= 0) {
         printf("Input tidak valid!\n");
-        return 0;
+        return ;
     }
 
-    // BAGIAN MERAH
+    // MERAH
     for (i = 0; i < t; i++) {
         printf("\033[41m");  // background merah
         for (j = 0; j < 30; j++) {
@@ -500,7 +500,7 @@ void bendera(){
         printf("\033[0m\n"); // reset warna
     }
 
-    // BAGIAN PUTIH
+    // PUTIH
     for (i = 0; i < t; i++) {
         printf("\033[47m");  // background putih
         for (j = 0; j < 30; j++) {
@@ -509,9 +509,10 @@ void bendera(){
         printf("\033[0m\n"); // reset warna
     }
 
-    printf("\nBENDERA INDONESIA JADI!\n");
+    printf("\nBendera Indonesia sudah jadi!\n");
+    printf("\nTerima Kasih!\n");
 
-    return 0;
+    return ;
 }
 
 void rumah() {
@@ -521,6 +522,7 @@ void rumah() {
     printf("=              POLA RUMAH             =\n");
     printf("=======================================\n");
 
+    printf("Selamat datang di program pembuatan pola rumah!\n");
     printf("Masukkan tinggi atap : ");
     scanf("%d", &t);
 
@@ -549,7 +551,8 @@ void rumah() {
         }
         printf("\n");
     }
-
-    return 0;
+    printf("\nPola rumah sudah jadi!\n");
+    printf("\nTerima Kasih!\n");
+    return ;
 
 }
